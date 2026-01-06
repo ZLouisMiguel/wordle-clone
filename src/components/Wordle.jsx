@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useWordle from "../hooks/useWordle.js";
 
-const Wordle = (solution) => {
+const Wordle = ({solution}) => {
   const { currentGuess, handleKeyUp } = useWordle(solution);
 
   useEffect(() => {
