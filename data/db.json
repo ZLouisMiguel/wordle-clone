@@ -1,0 +1,24 @@
+{
+  "solutions": [
+    { "word": "ninja", "id": 1 },
+    { "word": "fruit", "id": 2 },
+    { "word": "grape", "id": 3 },
+    { "word": "glass", "id": 4 },
+    { "word": "train", "id": 5 },
+    { "word": "fatal", "id": 6 },
+    { "word": "rusty", "id": 7 },
+    { "word": "zesty", "id": 8 },
+    { "word": "Jesus", "id": 9 },
+    { "word": "James", "id": 10 },
+    { "word": "never", "id": 11 },
+    { "word": "break", "id": 12 },
+    { "word": "spore", "id": 13 },
+    { "word": "spark", "id": 14 },
+    { "word": "flame", "id": 15 },
+    { "word": "blame", "id": 16 },
+    { "word": "frame", "id": 17 },
+    { "word": "coins", "id": 18 },
+    { "word": "hello", "id": 19 },
+    { "word": "blast", "id": 20 }
+  ]
+}
