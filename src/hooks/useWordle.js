@@ -8,7 +8,26 @@ const useWordle = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false);
 
   const formatGuess = () => {
-    console.log("Formatting the guess");
+    let solutionArray = [...solution.word];
+    let formattedGuess = [...currentGuess].map((letter) => {
+      return { key: letter, color: "gray" };
+    });
+
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray[index] === letter.key) {
+        letter.color = "green";
+        solutionArray[index] = null;
+      }
+    });
+
+    formattedGuess.forEach((letter, index) => {
+      if (solutionArray.includes(letter.key) && letter.color != "green") {
+        letter.color = "yellow";
+        solutionArray[solutionArray.indexOf(letter.key)] = null;
+      }
+    });
+
+    return formattedGuess;
   };
 
   const addNewGuess = () => {};
@@ -35,7 +54,8 @@ const useWordle = (solution) => {
         return;
       }
 
-      formatGuess();
+      const formatted = formatGuess();
+      console.log(formatted);
     }
     if (/^[A-Za-z]$/.test(key)) {
       if (currentGuess.length < 5) {
