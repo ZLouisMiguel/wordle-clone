@@ -31,7 +31,7 @@ const useWordle = (solution) => {
   };
 
   const addNewGuess = (formattedGuess) => {
-    if (currentGuess === solution) {
+    if (currentGuess === solution.word) {
       setIsCorrect(true);
     }
 
