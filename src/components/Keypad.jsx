@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
 
-const Keypad = () => {
+const Keypad = ({ usedKeys }) => {
   const [letters, setLetters] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     fetch("http://localhost:3001/letters")
-     .then(res => res.json())
-     .then(json => {
-       setLetters(json);
-     })
-     console.log("Done fetching");
-  },[]);
+      .then((res) => res.json())
+      .then((json) => {
+        setLetters(json);
+      });
+    console.log("Done fetching");
+  }, []);
   return (
     <div className="keypad">
-      {letters && letters.map((letter)=>{
-        return <div key={letter.key}> {letter.key}</div>
-      })}
+      {letters &&
+        letters.map((letter) => {
+          const color = usedKeys[letter.key];
+          return (
+            <div key={letter.key} className={color}>
+              {" "}
+              {letter.key}
+            </div>
+          );
+        })}
     </div>
-  )
+  );
 };
 
 export default Keypad;
