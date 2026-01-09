@@ -8,7 +8,6 @@ const Keypad = ({ usedKeys }) => {
       .then((json) => {
         setLetters(json);
       });
-    console.log("Done fetching");
   }, []);
   return (
     <div className="keypad">
