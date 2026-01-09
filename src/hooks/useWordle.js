@@ -32,7 +32,7 @@ const useWordle = (solution) => {
   };
 
   const addNewGuess = (formattedGuess) => {
-    if (currentGuess.toLowerCase() === solution.word.toLowerCase) {
+    if (currentGuess.toLowerCase() === solution.word.toLowerCase()) {
       setIsCorrect(true);
     }
 
