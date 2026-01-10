@@ -4,11 +4,24 @@ import Grid from "./Grid.jsx";
 import Keypad from "./Keypad.jsx";
 import Modal from "./Modal.jsx";
 
-const Wordle = ({ solution }) => {
-  const { currentGuess, handleKeyUp, guesses, turn, isCorrect, usedKeys } =
-    useWordle(solution);
+const Wordle = ({ solution, onRetry }) => {
+  const {
+    currentGuess,
+    handleKeyUp,
+    guesses,
+    turn,
+    isCorrect,
+    usedKeys,
+    resetGame,
+  } = useWordle(solution);
 
   const [showModal, setShowModal] = useState(false);
+
+  const handleRetry = () => {
+    setShowModal(false);
+    resetGame();
+    onRetry();
+  };
 
   useEffect(() => {
     window.addEventListener("keyup", handleKeyUp);
@@ -35,7 +48,14 @@ const Wordle = ({ solution }) => {
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
       <Keypad usedKeys={usedKeys} />
       {showModal && (
-        <Modal isCorrect={isCorrect} turn={turn} solution={solution.word} />
+        <Modal
+          isCorrect={isCorrect}
+          turn={turn}
+          solution={solution.word}
+          onRetryClick={() => {
+            handleRetry();
+          }}
+        />
       )}
     </>
   );
