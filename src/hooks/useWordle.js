@@ -81,12 +81,15 @@ const useWordle = (solution) => {
 
   const handleKeyUp = useCallback(
     ({ key }) => {
-      if (key === "Backspace" || key === "←") {
+      if (key === "↵") key = "Enter";
+      if (key === "←") key = "Backspace";
+
+      if (key === "Backspace") {
         setCurrentGuess((prev) => prev.slice(0, -1));
         return;
       }
 
-      if (key === "Enter" || key === "↵") {
+      if (key === "Enter") {
         if (turn > 5) return;
         if (history.includes(currentGuess)) return;
         if (currentGuess.length !== 5) return;
