@@ -46,7 +46,7 @@ const Wordle = ({ solution, onRetry }) => {
       <div>solution - {solution.word}</div>
       <div>Current Guess: - {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
-      <Keypad usedKeys={usedKeys} />
+      <Keypad usedKeys={usedKeys} handleKeyUp = {handleKeyUp}/>
       {showModal && (
         <Modal
           isCorrect={isCorrect}
