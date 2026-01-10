@@ -1,27 +1,23 @@
-import React from "react";
-
-const Modal = ({ isCorrect, turn, solution }) => {
+const Modal = ({ isCorrect, turn, solution, onRetryClick }) => {
   return (
     <div className="modal">
-      {isCorrect && (
-        <div>
-          <h1>You Win!</h1>
-          <p className="solution"> The word was {solution}</p>
-          <p>
-            You found the solution in {turn} guesses! {":)"}{" "}
-          </p>
-        </div>
-      )}
+      <div>
+        {isCorrect ? (
+          <>
+            <h1>You Win 🎉</h1>
+            <p className="solution">{solution}</p>
+            <p>You found the word in {turn} guesses</p>
+          </>
+        ) : (
+          <>
+            <h1>Nice try 💪</h1>
+            <p className="solution">{solution}</p>
+            <p>Better luck next time</p>
+          </>
+        )}
 
-      {!isCorrect && (
-        <div>
-          <h1>You lost!, But that's okay</h1>
-          <p className="solution"> {solution} was the word</p>
-          <p>
-            Better luck next time {":)"}{" "}
-          </p>
-        </div>
-      )}
+        <button onClick={onRetryClick}>Play Again</button>
+      </div>
     </div>
   );
 };
