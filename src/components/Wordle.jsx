@@ -43,8 +43,6 @@ const Wordle = ({ solution, onRetry }) => {
 
   return (
     <>
-      <div>solution - {solution.word}</div>
-      <div>Current Guess: - {currentGuess}</div>
       <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} />
       <Keypad usedKeys={usedKeys} handleKeyUp={handleKeyUp} />
       {showModal && (
