@@ -1,26 +1,29 @@
-import { useState, useEffect } from "react";
+const Keypad = ({ usedKeys, handleKeyUp }) => {
+  const KEYS = [
+    "q,w,e,r,t,y,u,i,o,p",
+    "a,s,d,f,g,h,j,k,l",
+    "↵,z,x,c,v,b,n,m,←",
+  ];
 
-const Keypad = ({ usedKeys }) => {
-  const [letters, setLetters] = useState(null);
-  useEffect(() => {
-    fetch("http://localhost:3001/letters")
-      .then((res) => res.json())
-      .then((json) => {
-        setLetters(json);
-      });
-  }, []);
   return (
     <div className="keypad">
-      {letters &&
-        letters.map((letter) => {
-          const color = usedKeys[letter.key];
-          return (
-            <div key={letter.key} className={color}>
-              {" "}
-              {letter.key}
-            </div>
-          );
-        })}
+      {KEYS.map((row, i) => (
+        <div key={i} className="keypad-row">
+          {row.split(",").map((letter) => {
+            const color = usedKeys[letter];
+            const isSpecial = letter === "↵" || letter === "←";
+            return (
+              <button
+                key={letter}
+                className={isSpecial ? "special-key" : color}
+                onClick={() => handleKeyUp({ key: letter })}
+              >
+                {letter}
+              </button>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };
