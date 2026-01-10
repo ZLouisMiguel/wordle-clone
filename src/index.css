@@ -79,38 +79,55 @@ h1 {
   animation: bounce .2s ease-in-out forwards; 
 }
 
-.keypad {
-  max-width: 500px;
-  margin: 20px auto;
+.keypad-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
 }
 
-.keypad > div {
-  margin: 5px;
-  width: 40px;
-  height: 50px;
-  background: #eee;
-  display: inline-block;
+.keypad button {
+  margin: 4px;
+  width: 60px;
+  height: 60px;
   border-radius: 6px;
-  line-height: 50px;
+  border: none;
+  outline: none;
+  background: #eee;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
-.keypad > div.green {
+.keypad button:hover {
+  background: #ddd;
+}
+
+.keypad button.green {
   background: #5ac85a;
-  color: #fff;
-  transition: all 0.3s ease-in;
+  color: white;
 }
 
-.keypad > div.yellow {
+.keypad button.yellow {
   background: #e2cc68;
-  color: #fff;
-  transition: all 0.3s ease-in;
+  color: white;
 }
 
-.keypad > div.gray {
+.keypad button.gray {
   background: #a1a1a1;
-  color: #fff;
-  transition: all 0.3s ease-in;
+  color: white;
 }
+
+.keypad button.special-key {
+  min-width: 65px;
+  background-color: #a2e8f1;
+  font-weight: bold;
+  font-size: 1.7em;
+}
+
+
+.keypad button.special-key:hover {
+  background-color: #76e0ee;
+}
+
 .modal {
   background: rgba(255,255,255,0.7);
   position: fixed;
