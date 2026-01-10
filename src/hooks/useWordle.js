@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0);
@@ -49,7 +49,7 @@ const useWordle = (solution) => {
     setTurn((prevTurn) => {
       return prevTurn + 1;
     });
-    
+
     setUsedKeys((prevUsedKeys) => {
       let newKeys = { ...prevUsedKeys };
       formattedGuess.forEach((letter) => {
@@ -79,39 +79,31 @@ const useWordle = (solution) => {
     setCurrentGuess("");
   };
 
-  const handleKeyUp = ({ key }) => {
-    if (key === "Backspace") {
-      setCurrentGuess((prev) => {
-        return prev.slice(0, -1);
-      });
-      return;
-    }
-    if (key === "Enter") {
-      if (turn > 5) {
-        console.log("You used all of your guesses");
-        return;
-      }
-      if (history.includes(currentGuess)) {
-        console.log("You've already tried that word");
+  const handleKeyUp = useCallback(
+    ({ key }) => {
+      if (key === "Backspace") {
+        setCurrentGuess((prev) => prev.slice(0, -1));
         return;
       }
 
-      if (currentGuess.length != 5) {
-        console.log("Word must be 5 chars long");
+      if (key === "Enter") {
+        if (turn > 5) return;
+        if (history.includes(currentGuess)) return;
+        if (currentGuess.length !== 5) return;
+
+        const formatted = formatGuess();
+        addNewGuess(formatted);
         return;
       }
 
-      const formatted = formatGuess();
-      addNewGuess(formatted);
-    }
-    if (/^[A-Za-z]$/.test(key)) {
-      if (currentGuess.length < 5) {
-        setCurrentGuess((prev) => {
-          return prev + key.toLowerCase();
-        });
+      if (/^[A-Za-z]$/.test(key)) {
+        if (currentGuess.length < 5) {
+          setCurrentGuess((prev) => prev + key.toLowerCase());
+        }
       }
-    }
-  };
+    },
+    [currentGuess, turn, history]
+  );
 
   return { turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp };
 };
