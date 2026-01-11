@@ -80,6 +80,17 @@ MIT License feel free to use, fork, and modify.
 ---
 ## Preview
 
-This section will later contain screenshots of the different game components and the gameplay.
+### Game Grid
+![Wordle Clone Grid](./screenshots/game.png)
+*A typical game in progress, showing guesses and feedback.*
+
+### Win Modal
+![Wordle Clone Win](./screenshots/win.png)
+*Displayed when you guess the word correctly.*
+
+### Lose Modal
+![Wordle Clone Lose](./screenshots/lose.png)
+*Displayed when you use all attempts without guessing the word.*
+
 
 
