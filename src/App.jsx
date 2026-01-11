@@ -4,10 +4,11 @@ import Wordle from "./components/Wordle.jsx";
 const App = () => {
   const [solution, setSolution] = useState(null);
   const getRandomSolution = () => {
-    fetch("http://localhost:3001/solutions")
+    fetch("/db.json")
       .then((res) => res.json())
       .then((data) => {
-        const randomSolution = data[Math.floor(Math.random() * data.length)];
+        const solutions = data.solutions;
+        const randomSolution = solutions[Math.floor(Math.random() * solutions.length)];
         setSolution(randomSolution);
       });
   };
@@ -18,7 +19,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Wordle (Lingo) </h1>
-      {solution && <Wordle solution={solution} onRetry ={getRandomSolution}/>}
+      {solution && <Wordle solution={solution} onRetry={getRandomSolution} />}
     </div>
   );
 };
